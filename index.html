@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>Ananas aus Caracas</title>
+  <link rel="stylesheet" href="src/ui/style.css">
+</head>
+<body>
+  <div id="hud"></div>
+  <div id="game"></div>
+  <div id="message"></div>
+  <div id="help">Move: arrows / numpad / WASD / click &middot; Attack F &middot; Dodge Q &middot; Wait . &middot; Use (stairs, towns, beds, chests) E &middot; Leave town X &middot; Borders B &middot; Zoom + / - / wheel &middot; Bag I &middot; Menu Esc</div>
+
+  <!-- Bag and chest windows -->
+  <div id="windows">
+    <section id="chest" class="window" hidden>
+      <header><span id="chest-title">Chest</span><button id="chest-close" title="Close (Esc)">&times;</button></header>
+      <div id="chest-grid" class="grid"></div>
+      <footer>
+        <button id="chest-takeall">Take all</button>
+        <span class="hint">Drag items to your bag, or shift-click</span>
+      </footer>
+    </section>
+    <section id="shop" class="window" hidden>
+      <header><span id="shop-title">Shop</span><button id="shop-close" title="Close (Esc)">&times;</button></header>
+      <div id="shop-grid" class="grid"></div>
+      <footer>
+        <span id="shop-gold"></span>
+        <span class="hint">Double-click to buy &middot; drag or shift-click your things here to sell (half price)</span>
+      </footer>
+    </section>
+    <section id="gear" class="window" hidden>
+      <header><span>Character</span></header>
+      <div id="sheet"></div>
+      <div id="equip-grid"></div>
+      <footer><span class="hint">Drag weapons and armour here, or double-click them</span></footer>
+    </section>
+    <section id="inventory" class="window" hidden>
+      <header><span>Bag</span><button id="inv-close" title="Close (I)">&times;</button></header>
+      <div id="inv-grid" class="grid"></div>
+      <footer><span class="hint">Same items stack. Double-click to equip or drink.</span></footer>
+    </section>
+  </div>
+  <div id="factions" hidden></div>
+  <div id="tooltip" hidden></div>
+  <div id="banner" hidden><h2></h2><p></p></div>
+
+  <!-- Main menu -->
+  <div id="menu">
+    <div class="menu-box">
+      <div class="menu-glyph">@</div>
+      <h1>Ananas aus Caracas</h1>
+      <p class="tagline">A tiny roguelike built with rot.js</p>
+      <button id="menu-resume" hidden>Resume</button>
+      <button id="menu-new">Enter the world</button>
+      <button id="menu-controls">Controls</button>
+      <div id="menu-help" hidden>
+        <p><kbd>Arrows</kbd> <kbd>Numpad</kbd> <kbd>WASD</kbd> move. <kbd>Home</kbd> <kbd>PgUp</kbd> <kbd>End</kbd> <kbd>PgDn</kbd> (or numpad 7 9 1 3) move diagonally</p>
+        <p>Click a square to walk there. You stop if you see an enemy. Click an enemy to attack it.</p>
+        <p><kbd>F</kbd> attack (or walk into the enemy) &middot; <kbd>Q</kbd> dodge (attacks on you get disadvantage) &middot; <kbd>.</kbd> wait</p>
+        <p>When an orc raises its axe, its target square turns red: step off it or dodge.</p>
+        <p><kbd>+</kbd> <kbd>-</kbd> or the mouse wheel zoom the map. <kbd>X</kbd> (or walking off the edge) leaves a town.</p>
+        <p>Double-click food or drink in your bag to eat it, the camping kit to sleep 8 hours. Tavern beds cost 1 gold (<kbd>E</kbd> on a bed).</p>
+        <p>Walk into a shopkeeper (pink @) to trade, or a villager to chat.</p>
+        <p>On the world map, <kbd>B</kbd> shows the three kingdoms' borders and their treasuries. Roads (&middot;) are twice as quick. Walk into a caravan (C) to trade grain, stone, metal and luxury goods; the general store in every town trades them too, at prices that follow supply and demand.</p>
+        <p><kbd>E</kbd> / <kbd>Enter</kbd> use: enter the dungeon, climb the stairs, open a chest</p>
+        <p><kbd>I</kbd> open or close your bag</p>
+        <p>Drag items from a chest into your bag. Shift-click moves a whole stack.</p>
+        <p><kbd>Esc</kbd> close windows / menu</p>
+      </div>
+      <button id="menu-quit">Quit</button>
+    </div>
+  </div>
+
+  <!-- rot.js from node_modules -->
+  <script src="node_modules/rot-js/dist/rot.js"></script>
+  <!-- Game code. Tutorial parts 1-3 live in Map.js, Player.js, Game.js and AI.js. -->
+  <script src="src/ui/UI.js"></script>
+  <script src="src/ui/InventoryUI.js"></script>
+  <script src="src/game/Items.js"></script>
+  <script src="src/game/Inventory.js"></script>
+  <script src="src/systems/Combat.js"></script>
+  <script src="src/systems/Clock.js"></script>
+  <script src="src/game/Shops.js"></script>
+  <script src="src/game/Tiles.js"></script>
+  <script src="src/game/Overworld.js"></script>
+  <script src="src/game/Map.js"></script>
+  <script src="src/game/Entity.js"></script>
+  <script src="src/game/Player.js"></script>
+  <script src="src/systems/FOV.js"></script>
+  <script src="src/systems/AI.js"></script>
+  <script src="src/systems/NPC.js"></script>
+  <script src="src/systems/Economy.js"></script>
+  <script src="src/game/Town.js"></script>
+  <script src="src/game/Game.js"></script>
+  <script src="src/main.js"></script>
+</body>
+</html>
